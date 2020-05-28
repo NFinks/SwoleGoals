@@ -1,0 +1,61 @@
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5E4485;">
+    <a class="navbar-brand" href="#">
+      <div class="row align-items-center ml-1">
+        <img src="../assets/images/dumbbell.png" width="50" height="50">
+        <h3 class="ml-2">Swole Goals</h3>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="nav navbar-nav">
+	  
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" routerLink="/app-splash">Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-exercise-list">Exercises</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-map">Map</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-exercise-table">Performance Table</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-challenge-creation-menu">Challenge Creation</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-leaderboard">Leaderboard</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" data-toggle="tab" routerLink="/app-user-profile">Profile</a>
+        </li>
+        <li *ngIf="!userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" (click)="logIn()" data-toggle="tab" href="#">Login</a>
+        </li>
+        <li *ngIf="userService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" (click)="logOut()" data-toggle="tab" routerLink = "/app-splash">Logout</a>
+        </li>
+      </ul>
+    </div>
+	  <script>
+	  $('.nav-link').on('click', function(){
+		   $('.nav-item').find('.active').removeClass('active');
+		   $(this).addClass('active');
+		});
+	</script>
+  </nav>
+  <router-outlet></router-outlet>
+
+	 
+</body>

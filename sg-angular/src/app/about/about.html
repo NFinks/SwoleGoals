@@ -1,0 +1,343 @@
+<div class="container-fluid px-5 pt-5">
+    <div>
+        <div class="row justify-content-center">
+            <h1>About Swole Goals</h1>
+        </div>
+        <div class="row justify-content-center">
+            <h5>
+                Swole Goals is a webapp intended to motivate people to exercise by providing a platform for them to
+                compete
+                against their friends.
+            </h5>
+        </div>
+        <div>
+            <a href="https://github.com/swole-goals/SwoleGoals" target="_blank" style="text-decoration:none">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto px-1">
+                        <h4>Github Repository</h4>
+                    </div>
+                    <div class="col-auto px-1">
+                        <img src="../../assets/images/GitHub-Mark-32px.png">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="mt-3">
+        <h3>Meet Team Burgundy</h3>
+        <div class="row ml-1">
+            <div *ngFor="let git of gitAccountList">
+                <div class="card mr-2" style="width: 18rem;">
+                    <img src={{git.image}} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{git.name}}</h5>
+                        <p class="card-text">Github Account:
+                            <a href={{git.url}} target="_blank">{{git.user}}</a>
+                        </p>
+                        <p class="card-text">Number of Commits: {{git.commits}}</p>
+                        <p class="card-text">Responsibilities: {{git.responsibilities}}</p>
+                        <p class="card-text">{{git.bio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>Stats:</h3>
+        <div class="col">
+            <h5>Total Commits: {{totalCommits}}</h5>
+            <h5>Total Open Issues: {{issues.length}}</h5>
+            <h5>Total Unit Tests: 30</h5>
+        </div>
+    </div>
+    <div class="mt-3">
+        <h3>Data Scraping:</h3>
+        <div class="col">
+            <h5>
+                <a href="https://www.bodybuilding.com/exercises/" target="_blank">bodybuilding.com</a>
+                <br />
+                <a href="https://www.strengthlevel.com/" target="_blank">strengthlevel.com</a>
+            </h5>
+
+            <p>Web scraping was done by utilizing Selenium web browser automation. A Python script was written which
+                loops
+                through each of the muscle groups found <a
+                    href="https://www.bodybuilding.com/exercises/finder/?">here</a>
+                (17
+                total),
+                selecting the “Load More” button once on each muscle group, and getting the URLs for each exercise
+                that
+                is present on that page by using its xpath. These URLs are then loaded in the browser, and the
+                exercise
+                name, exercise type, muscle worked, equipment needed, exercise ranking, exercise instructions,
+                and both exercise images are located using their xpaths and stored into arrays. The totality of the
+                data is then written to a tab separated file that then can easily be put into the MySQL database.
+                strengthlevel.com was scraped similar to bodybuilding.com, but we decided to scrape by modifying two
+                select tags to parse through all available exercises and obtain performance information based on a
+                150 pound individual.
+            </p>
+        </div>
+    </div>
+    <div class="mt-3">
+        <h3>Tools</h3>
+        <div class="row">
+            <div class="col">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                    MySQL
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                A MySQL database running on Google Cloud contains all of the exercise information.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    ExpressJS
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Express is used to setup routes to get, post, delete, and update data from the database
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Angular
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Our frontend is built using Angular running on Google Cloud
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    NodeJS
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                NodeJS is used to build the backend server
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    AWS S3
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse show" aria-labelledby="headingFive"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                AWS is used to host the frontend Angular project
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="accordion2">
+                    <div class="card">
+                        <div class="card-header" id="headingSix">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix"
+                                    aria-expanded="true" aria-controls="collapseSix">
+                                    Github
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseSix" class="collapse show" aria-labelledby="headingSix"
+                            data-parent="#accordion2">
+                            <div class="card-body">
+                                All of our code is hosted and revision controlled in our Github repository
+                                <a href="https://github.com/vivianmnguyen/SwoleGoals" target="_blank">here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingSeven">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                    Bootstrap
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven"
+                            data-parent="#accordion2">
+                            <div class="card-body">
+                                Bootstrap provides us with prebuilt CSS classes and a grid system to make laying out the
+                                frontend easier
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingEight">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                    Google Cloud
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseEight" class="collapse show" aria-labelledby="headingEight"
+                            data-parent="#accordion2">
+                            <div class="card-body">
+                                We are using Google App Engine for our Firestore and SQL backend servers
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingNine">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                    npm
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseNine" class="collapse show" aria-labelledby="headingNine"
+                            data-parent="#accordion2">
+                            <div class="card-body">
+                                We use npm to download and manage dependencies like Bootstrap
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTen">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen"
+                                    aria-expanded="false" aria-controls="collapseTen">
+                                    Google Firestore
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTen" class="collapse show" aria-labelledby="headingTen"
+                            data-parent="#accordion2">
+                            <div class="card-body">
+                                We use Firestore to host our non-relational data such as user data, groups, and
+                                challenges
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="accordion3">
+                    <div class="card">
+                        <div class="card-header" id="headingNine">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse11"
+                                    aria-expanded="true" aria-controls="collapse11">
+                                    Travis CI
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse11" class="collapse show" aria-labelledby="heading11"
+                            data-parent="#accordion3">
+                            <div class="card-body">
+                                Travis CI runs our tests on a VM and then deploys to AWS after the master branch passes
+                                our tests
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="heading12">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse12"
+                                    aria-expanded="true" aria-controls="collapse12">
+                                    Python
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse12" class="collapse show" aria-labelledby="heading12"
+                            data-parent="#accordion3">
+                            <div class="card-body">
+                                We are using Python to scrape data
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="heading13">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse13"
+                                    aria-expanded="false" aria-controls="collapse13">
+                                    Selenium
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse13" class="collapse show" aria-labelledby="heading13"
+                            data-parent="#accordion3">
+                            <div class="card-body">
+                                We use Selenium to get the exercise information from bodybuilding.com
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="heading14">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse14"
+                                    aria-expanded="false" aria-controls="collapse14">
+                                    Vim/VS Code/Webstorm
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse14" class="collapse show" aria-labelledby="heading14"
+                            data-parent="#accordion3">
+                            <div class="card-body">
+                                We are using Vim, Visual Studio Code, and Jetbrains Webstorm to edit our code
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="heading15">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse15"
+                                    aria-expanded="false" aria-controls="collapse15">
+                                    Postman
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse15" class="collapse show" aria-labelledby="heading15"
+                            data-parent="#accordion3">
+                            <div class="card-body">
+                                We are using Postman to test our backend API. We exported our Postman collection and are
+                                running the tests using Travis CI and Postman's Newman CLI.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- 11.10.0
+dist: trusty
+sudo: required
+before_install:
+- cd sg-angular
+install:
+- npm install
+script:
+- node_modules/.bin/newman run ../testing/SwoleGoals.postman_collection.json
+- ng build --prod
+deploy:
+  provider: s3
+  access_key_id: AKIAJK7ATZWYZW42QWZQ
+  secret_access_key:
+    secure: e7Y6gAbo4j3Tke2m/GyYsuFeT+lYAFvGdIMy320sI8CuThgOOjd+cSf136yKLo5i12u/eP0G68NsszjU0vYM9gldjGH8kCMP0M+QNcvgcTg63HSXv1ckl1uDmRaleg/4OAjCV1rKFxFOnDGTKC1lq3wAe+CCAlqkFXqgu/p3ANdUvUujq23d8wSnCMBBOv3eHD29zCPjqduGHc1Gv2JQVh19JVuPzULOZWkrD2fD80k0e30M6TKAVRZATKnk3JVA+Xt6krV4FaxHWOcVsnWHy2DBFytD8qJDjDWPam/FodKgcGUE6TSmF4Ll93rrOySj/hmSW7uknExAOwen8I20G8fweS3XVmPOP3gJIxADaf4b3VwYPY364k0WQSlZc11EaW1HXNz0FbCkdmvcR+UFXNys7eJPhos+PQpwyePPnHjdOXhHo4GXnEO0wovrNSZIPZ/6uW/0MfGJZTGluC8yGhr51vcXkz+tIjXDKIcZ8o4Ko7LuRtOPXVp+avH01xkXyr18xA6PdysH+v8AHHK9JaQTJWu1HWdCawmjVrcko7EQ0Hfx2sTReiEbaiowx98501S0RrXR1TTtiwUxwbM1THEqekVjYEVrtiujy54IckAqCTwjTBdHYmWIqwh0JevSqIsTTpjNYqiAR8+9eurK5sZZUZFdAYlgHqqRod8+Rfo=
+  bucket: swolegoals
+  local-dir: dist
+  on:
+    repo: swole-goals/SwoleGoals
+    branch: master
+  skip_cleanup: true
+  region: us-east-2
+notifications:
+  slack:
+    secure: EACzT6HqvnujXMsWKe341Sx3X8r4A9nYtAItNyYZC8vJsdUDvGKJK9vrK04puyp8nJPcYRmcoMnjHv6S4F8K66LcS279QyeZi++KneqvpWXofu7w8FmVciZ3p/2jH3TNS/HXztQIl7gE+14p9yqp4o1wrPvHC3XbzTtXAQE/M0qTxgu6syyD9QcR331WgNsRNRZeUkctw0yFNu8SOkUqmdEusFBi5QQn1OuWgYARWxM6+kamv+aTPtCE2Kd8LwLnT52bmrAV1hcpI1YM5zZBak9EGo+NWhwbtqy+nMJ/UR6wY9lsa58UMuJF0Sd0UNmQxoScTqOtyTJcdUZKhisgwC2ULLy6nDkzT/wfQyRygWak1NxgI5w4N9GerygBM/uE7MkzpfM7KF7MWOgq0DuJ5kndtmcelapS0tFMHp4WKcxOZepKqJqy6NZ3ypg8PDm5LXby+YY0/DFOwdJfRnb4iJPcyN1sAu50vrL7dx/9rpP9mMeTwRiRwblif8m6hS2P758i5bpCTnmDiN7K49huihsFqq6Hw7AiOh5/hztqlbO2QvvE1h7DUQxga9N85wnkGQHYBftRCAx2kIAr2NYAtIvc9kzGxbv6YG/D2KVruGpiMvV4ghnVyxcoMr+gdcsRxebgFNr71lhH6EaT+w3+GEQE49se3W/MgRYSgBtKs1k=

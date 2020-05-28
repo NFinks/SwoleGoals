@@ -1,0 +1,90 @@
+<div class="container-fluid px-5 pt-5">
+  <h1>Create New Challenge</h1>
+  <div class="row align-items-end">
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Exercises">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <div class="row justify-content-center">
+        <h3>Selected Exercises</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col border1">
+      <table mat-table [dataSource]="dataSource1" width="100%">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Exercise Name </th>
+          <td mat-cell *matCellDef="let exercise"> {{exercise.name}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+    </div>
+    <div class="col border1">
+      <table mat-table [dataSource]="dataSource2" width="100%">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectedSelection.toggle(row) : null"
+              [checked]="selectedSelection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Exercise Name </th>
+          <td mat-cell *matCellDef="let exercise"> {{exercise.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="slider">
+          <th mat-header-cell *matHeaderCellDef> Reps </th>
+          <td mat-cell *matCellDef="let i = index">{{exerciseReps[i]}}
+            <mat-slider [(ngModel)]="exerciseReps[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1"
+              max="20">
+            </mat-slider>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-around mt-2">
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="addExercises()">
+        Add Exercises
+      </button>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="removeExercises()">
+        Remove Exercises
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row justify-content-end">
+        <div class="form-inline">
+          <input class="form-control mr-2" type="text" [(ngModel)]="challengeName" [ngModelOptions]="{standalone: true}"
+            placeholder="Challenge Name">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="createChallenge()"
+        [disabled]="(!(selectedExercises.length > 0) || !(challengeName.length > 0))">
+        Create Challenge
+      </button>
+    </div>
+  </div>
+</div>
